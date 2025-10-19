@@ -15,7 +15,7 @@ Je m'intéresse au web, à l'IA, au design et à la cybersécurité. J’aime ap
   <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black" alt="JS" />
 </div>
 
-**Autres outils / librairies :**  
+**Quelques librairies :**  
 <div style="display: flex; flex-wrap: wrap; gap: 10px;">
   <img src="https://skillicons.dev/icons?i=python,git,vscode,jupyter" alt="Autres compétences" />
 </div>
