@@ -3,7 +3,7 @@
 Je m'appelle Léa, je suis étudiante en 4ème année à l'ESILV, majeure cloud computing et cybersécurité.
 Je m'intéresse au web, à l'IA, au design et à la cybersécurité. J’aime apprendre et partager mes projets ici :)  
 
-### 💻 Compétences
+## Compétences
 
 **Langages principaux :**  
 <div style="display: flex; flex-wrap: wrap; gap: 10px;">
@@ -29,5 +29,5 @@ Je m'intéresse au web, à l'IA, au design et à la cybersécurité. J’aime ap
 - Email : lea.montaron@edu.devinci.fr  
 - Linkedin : www.linkedin.com/in/leamontaron)
   
-# Statistiques
+### Statistiques
 ![GitHub Stats](https://github-readme-stats.vercel.app/api?username=L34M-X&show_icons=true&theme=tokyonight)
