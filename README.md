@@ -1,16 +1,17 @@
-## Hi there 👋
+## 👋 Bienvenue sur mon GitHub !
 
-<!--
-**L34M-X/L34M-X** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
+Je m'appelle Léa, je suis étudiante en 4ème année à l'ESILV, majeure cloud computing et cybersécurité.
+Je m'intéresse au web, à l'IA, au design et à la cybersécurité. J’aime apprendre et partager mes projets ici :)  
 
-Here are some ideas to get you started:
+### Mes compétences
+- **Langages :** Python, C#, C++, Rust, SQL, HTML/CSS, JavaScript  
+- **Outils :** Git, VS Code, Jupyter Notebook, Excel, Kaggle  
+- **Bibliothèques :** pandas, scikit-learn, matplotlib, etc.  
 
-- 🔭 I’m currently working on ...
-- 🌱 I’m currently learning ...
-- 👯 I’m looking to collaborate on ...
-- 🤔 I’m looking for help with ...
-- 💬 Ask me about ...
-- 📫 How to reach me: ...
-- 😄 Pronouns: ...
-- ⚡ Fun fact: ...
--->
+### Me contacter
+- Email : lea.montaron@edu.devinci.fr  
+- Linkedin : www.linkedin.com/in/leamontaron)  
+
+
+![GitHub Stats](https://github-readme-stats.vercel.app/api?username=leamontaron-arch&show_icons=true&theme=tokyonight)
+![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=leamontaron-arch&layout=compact&theme=tokyonight)
