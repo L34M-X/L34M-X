@@ -10,8 +10,9 @@ Je m'intéresse au web, à l'IA, au design et à la cybersécurité. J’aime ap
 
 ### Me contacter
 - Email : lea.montaron@edu.devinci.fr  
-- Linkedin : www.linkedin.com/in/leamontaron)  
+- Linkedin : www.linkedin.com/in/leamontaron)
+  
 
 
-![GitHub Stats](https://github-readme-stats.vercel.app/api?username=leamontaron-arch&show_icons=true&theme=tokyonight)
-![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=leamontaron-arch&layout=compact&theme=tokyonight)
+![GitHub Stats](https://github-readme-stats.vercel.app/api?username=L34M-X&show_icons=true&theme=tokyonight)
+![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=L34M-X&layout=compact&theme=tokyonight)
