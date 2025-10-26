@@ -27,5 +27,3 @@ Je m'intéresse au web, à l'IA, au design et à la cybersécurité. J’aime ap
   
 ### Statistiques
 ![GitHub Stats](https://github-readme-stats.vercel.app/api?username=L34M-X&show_icons=true&theme=tokyonight)
-[![TryHackMe Badge](assets/tryhackme-badge.svg)](https://tryhackme.com/p/L34M)
-
