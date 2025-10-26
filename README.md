@@ -28,3 +28,8 @@ Je m'intéresse au web, à l'IA, au design et à la cybersécurité. J’aime ap
 ### Statistiques
 ![GitHub Stats](https://github-readme-stats.vercel.app/api?username=L34M-X&show_icons=true&theme=tokyonight)
 [![TryHackMe Badge](https://tryhackme.com/api/v2/badges/public-profile?userPublicId=5777002)](https://tryhackme.com/p/5777002)
+<a href="https://tryhackme.com/p/5777002" target="_blank" rel="noopener noreferrer">
+  <img src="https://tryhackme.com/api/v2/badges/public-profile?userPublicId=5777002"
+       alt="TryHackMe - profil 5777002"
+       style="border:0; max-width:100%;">
+</a>
