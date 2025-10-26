@@ -1,0 +1,110 @@
+name: Update TryHackMe Badge
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 0 * * *' # une fois par jour (UTC)
+
+jobs:
+  update-badge:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y jq
+
+      - name: Fetch TryHackMe API
+        id: fetch
+        run: |
+          API_URL="https://tryhackme.com/api/v2/badges/public-profile?userPublicId=5777002"
+          echo "Fetching $API_URL"
+          http_status=$(curl -w "%{http_code}" -sS -o api.json "$API_URL" || echo "000")
+          echo "status:$http_status" >> $GITHUB_OUTPUT || true
+          if [ "$http_status" != "200" ]; then
+            echo "ERROR: Failed to fetch API (status $http_status). Saving response for debug."
+            cat api.json || true
+          fi
+          # Save a copy for commit/debug
+          mkdir -p .tryhackme
+          mv api.json .tryhackme/api.json || true
+          echo "Fetched."
+
+      - name: Parse JSON and create SVG badge
+        id: gen
+        run: |
+          set -e
+          JSON_FILE=".tryhackme/api.json"
+          # Fallback values
+          USERNAME="L34M"
+          SCORE=""
+          LEVEL=""
+          # Try to extract some sensible fields (robust: jq will return null->empty)
+          if [ -f "$JSON_FILE" ]; then
+            # Try a few common keys that might exist in TryHackMe API response
+            USERNAME=$(jq -r '.username // .user // .profile.username // .data.username // .publicId // "L34M"' "$JSON_FILE" 2>/dev/null)
+            SCORE=$(jq -r '.score // .points // .xp // .data.score // empty' "$JSON_FILE" 2>/dev/null)
+            LEVEL=$(jq -r '.level // .rank // .data.level // empty' "$JSON_FILE" 2>/dev/null)
+          fi
+          # Clean up nulls
+          [ "$USERNAME" = "null" ] && USERNAME="L34M"
+          [ "$SCORE" = "null" ] && SCORE=""
+          [ "$LEVEL" = "null" ] && LEVEL=""
+
+          # Build right-side text
+          RIGHT_TEXT="$([ -n "$SCORE" ] && echo "Score: $SCORE" || echo "Profil TryHackMe")"
+          [ -n "$LEVEL" ] && RIGHT_TEXT="$RIGHT_TEXT • Level: $LEVEL"
+
+          echo "Generating SVG for $USERNAME with text: $RIGHT_TEXT"
+
+          # Create assets dir
+          mkdir -p assets
+
+          # Simple neat SVG badge (left label + right value). You can customize fonts/colors.
+          cat > assets/tryhackme-badge.svg <<'SVG'
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="260" height="28" viewBox="0 0 260 28" role="img" aria-label="TryHackMe Badge">
+  <style>
+    .label { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial; font-size: 12px; fill: #fff; }
+    .value { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial; font-size: 12px; fill: #0b0b0b; }
+  </style>
+  <!-- background -->
+  <rect rx="4" width="260" height="28" fill="#111827"/>
+  <!-- left part -->
+  <rect rx="4" x="0" y="0" width="110" height="28" fill="#ff6a00"/>
+  <g transform="translate(12,18)">
+    <text class="label">TryHackMe</text>
+  </g>
+  <!-- right part -->
+  <g transform="translate(130,18)">
+    <text class="value" id="valueText">PROFILE</text>
+  </g>
+  <!-- clickable link overlay (GitHub renders remote SVG but link in README points to profile) -->
+</svg>
+SVG
+
+          # Now substitute the RIGHT_TEXT into the SVG (escape &)
+          RIGHT_ESCAPED=$(printf '%s' "$RIGHT_TEXT" | sed 's/&/\&amp;/g; s/"/&quot;/g;')
+          # replace placeholder PROFILE with the actual text
+          sed -i "s/PROFILE/$RIGHT_ESCAPED/g" assets/tryhackme-badge.svg
+
+          # Save metadata copy for debugging
+          cp "$JSON_FILE" .tryhackme/api_saved.json || true
+
+          echo "badge_path=assets/tryhackme-badge.svg" >> $GITHUB_OUTPUT
+          echo "username=$USERNAME" >> $GITHUB_OUTPUT
+          echo "right_text=$RIGHT_TEXT" >> $GITHUB_OUTPUT
+
+      - name: Commit updated badge
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add assets/tryhackme-badge.svg .tryhackme/api_saved.json || true
+          if git diff --staged --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "Update TryHackMe badge for L34M" || true
+            git push
+          fi
