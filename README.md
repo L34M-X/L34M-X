@@ -18,6 +18,7 @@ Je m'intéresse au web, à l'IA, au design et à la cybersécurité. J’aime ap
 **Quelques librairies :**  
 <div style="display: flex; flex-wrap: wrap; gap: 10px;">
   <img src="https://skillicons.dev/icons?i=python,git,vscode,jupyter" alt="Autres compétences" />
+  <iframe src="https://tryhackme.com/api/v2/badges/public-profile?userPublicId=5777002" style='border:none;'></iframe>
 </div>
 
 
